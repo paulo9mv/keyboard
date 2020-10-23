@@ -14,11 +14,12 @@ $(document).on("keyup", function (e) {
 });
 
 function setBackgroundColor(key, status, remove) {
-    console.log(asciiToChar(key))
     const doc = elementById(asciiToChar(key))
 
+    if(!doc) return
+
     if(remove) {
-        doc.classList.remove('pressing')
+        doc.classList.remove(remove)
     }
 
     doc.classList.add(status)

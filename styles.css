@@ -4,8 +4,11 @@
 }
 
 .keycontainer {
+    position: relative;
     height: 50px;
     width: 50px;
+    text-align: center;
+    margin: auto;
 }
 
 .pressed {
@@ -14,4 +17,11 @@
 
 .pressing {
     background-color: var(--pressing)
+}
+
+.keyname {
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%,50%);
+    position: absolute;
 }
