@@ -1,9 +1,18 @@
 $(document).on("keydown", function (e) {
+    console.log('keydown', e.which, e.keyCode)
     if (!pressing.includes(e.which)) {
         pressing.push(e.which)
         setBackgroundColor(e.which, 'pressing', 'pressed')
     }
 });
+
+$(document).on("keypress", function (e) {
+    console.log('keypress', e.which, e.keyCode, asciiToChar(e.keyCode))
+});
+
+const keys = {
+    'a': 'b'
+}
 
 $(document).on("keyup", function (e) {
     const index = pressing.indexOf(e.which);
