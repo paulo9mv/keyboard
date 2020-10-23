@@ -1,5 +1,17 @@
+:root {
+    --pressed: #ccff90;
+    --pressing: #76ff03;
+}
+
 .keycontainer {
     height: 50px;
     width: 50px;
-    background-color: #999;
+}
+
+.pressed {
+    background-color: var(--pressed);
+}
+
+.pressing {
+    background-color: var(--pressing)
 }
