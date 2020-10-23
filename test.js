@@ -33,4 +33,12 @@ function elementById(id) {
     return document.getElementById(id)
 }
 
+function resetKeyboard() {
+    const keyDivs = document.getElementsByClassName('keycontainer')
+
+    for(const element of keyDivs) {
+        element.classList.remove('pressed')
+    }
+}
+
 var pressing = []
