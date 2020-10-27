@@ -1,13 +1,24 @@
 $(document).on("keydown", function (e) {
-    console.log('keydown', e.which, e.keyCode)
-    if (!pressing.includes(e.which)) {
-        pressing.push(e.which)
-        setBackgroundColor(e.which, 'pressing', 'pressed')
+    if (!pressing.includes(e.key)) {
+        pressing.push(e.key)
+        console.log(pressing)
+        setBackgroundColor(e.key, 'pressing', 'pressed')
     }
 });
 
 $(document).on("keypress", function (e) {
-    console.log('keypress', e.which, e.keyCode, asciiToChar(e.keyCode))
+    //console.log(e)
+    //console.log('keypress', e.which, e.keyCode, asciiToChar(e.keyCode))
+    const keyPressed = asciiToChar(e.keyCode)
+});
+
+$(document).on("keyup", function (e) {
+    console.log('up')
+    const index = pressing.indexOf(e.key);
+    if (index > -1) {
+        pressing.splice(index, 1);
+    }
+    setBackgroundColor(e.key, 'pressed', 'pressing')
 });
 
 const keysType = {
@@ -64,21 +75,36 @@ const keysType = {
         'key46': ['.', '>'],
         'key47': [';', ':'],
         'key48': ['/', '?', '°'],
+        //specials
+        'key49': ['Tab'],
+        'key50': ['CapsLock'],
+    }
+}
+const mapped = {}
+function mapCharsAsKeys() {
+    const a = keysType.abnt2;
+    for(var b in a) {
+        const keys = a[b]
+        for(var key of keys) {
+            if (mapped[key] === undefined)
+                mapped[key] = [];
+            mapped[key].push(b)
+        }
     }
 }
 
-console.log(keysType['ª'])
+mapCharsAsKeys()
 
-$(document).on("keyup", function (e) {
-    const index = pressing.indexOf(e.which);
-    if (index > -1) {
-        pressing.splice(index, 1);
-    }
-    setBackgroundColor(e.which, 'pressed', 'pressing')
-});
+
 
 function setBackgroundColor(key, status, remove) {
-    const doc = elementById(asciiToChar(key))
+
+    console.log(mapped)
+    const keyIndex = mapped[key]
+    console.log(keyIndex)
+
+    const doc = elementById(keyIndex)
+    console.log(doc)
 
     if (!doc) return
 
