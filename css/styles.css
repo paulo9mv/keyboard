@@ -10,7 +10,14 @@
 
 div {
     font-family: circularStdBook;
+}
+
+.keyboard {
     font-size: 26px;
+}
+
+.footer {
+    font-size: 24px;
 }
 
 .inner {
@@ -25,6 +32,20 @@ div {
     background-color: #69f0ae;
     color: black;
     text-align: center;
+}
+
+.maincontent {
+    position: fixed;
+    left: 25%;
+    top: 25%;
+}
+
+.contrib {
+    font-size: 22px;
+}
+
+.center {
+    vertical-align: middle;
 }
 
 .keycontainer {
