@@ -1,25 +1,24 @@
 $(document).on("keydown", function (e) {
-    if (!pressing.includes(e.key)) {
-        pressing.push(e.key)
-        console.log(pressing)
-        setBackgroundColor(e.key, 'pressing', 'pressed')
+    console.log(e)
+    const key = confereKey(e.key, e.which)
+    if (!pressing.includes(key)) {
+        pressing.push(key)
+        setBackgroundColor(key, 'pressing', 'pressed')
     }
-});
-
-$(document).on("keypress", function (e) {
-    //console.log(e)
-    //console.log('keypress', e.which, e.keyCode, asciiToChar(e.keyCode))
-    const keyPressed = asciiToChar(e.keyCode)
 });
 
 $(document).on("keyup", function (e) {
-    console.log('up')
-    const index = pressing.indexOf(e.key);
+    const key = confereKey(e.key, e.which)
+    const index = pressing.indexOf(key);
     if (index > -1) {
         pressing.splice(index, 1);
     }
-    setBackgroundColor(e.key, 'pressed', 'pressing')
+    setBackgroundColor(key, 'pressed', 'pressing')
 });
+
+function confereKey(key, which){
+    return key
+}
 
 const keysType = {
     "abnt2": {
@@ -78,6 +77,8 @@ const keysType = {
         //specials
         'key49': ['Tab'],
         'key50': ['CapsLock'],
+        'key51': ['Shift'],
+        'key52': ['Shift']
     }
 }
 const mapped = {}
@@ -95,24 +96,24 @@ function mapCharsAsKeys() {
 
 mapCharsAsKeys()
 
-
-
 function setBackgroundColor(key, status, remove) {
-
-    console.log(mapped)
     const keyIndex = mapped[key]
+    console.log(key)
     console.log(keyIndex)
+    console.log(mapped)
 
-    const doc = elementById(keyIndex)
-    console.log(doc)
+    const docs = elementById(keyIndex)
 
-    if (!doc) return
+    if (!docs) return
 
     if (remove) {
-        doc.classList.remove(remove)
+        for(var doc of docs) {
+            doc.classList.remove(remove)
+        }
     }
 
-    doc.classList.add(status)
+    for(var docAdd of docs) 
+        docAdd.classList.add(status)
 }
 
 function asciiToChar(ascii) {
@@ -120,7 +121,11 @@ function asciiToChar(ascii) {
 }
 
 function elementById(id) {
-    return document.getElementById(id)
+    const a = []
+    for(var element of id) {
+        a.push(document.getElementById(element))
+    }
+    return a
 }
 
 function resetKeyboard() {
