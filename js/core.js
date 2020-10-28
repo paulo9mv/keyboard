@@ -1,5 +1,6 @@
 $(document).on("keydown", function (e) {
-    console.log(e)
+    console.log(e.key, e.which)
+    return
     const key = confereKey(e.key, e.which)
     if (!pressing.includes(key)) {
         pressing.push(key)
@@ -8,6 +9,7 @@ $(document).on("keydown", function (e) {
 });
 
 $(document).on("keyup", function (e) {
+    return;
     const key = confereKey(e.key, e.which)
     const index = pressing.indexOf(key);
     if (index > -1) {
@@ -17,6 +19,9 @@ $(document).on("keyup", function (e) {
 });
 
 function confereKey(key, which){
+    if (key === 'Dead') {
+        return which
+    }
     return key
 }
 
