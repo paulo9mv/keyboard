@@ -25,6 +25,48 @@ function confereKey(key, which){
     return key
 }
 
+const mappedKeys = new Array(400)
+
+mappedKeys
+const keydownToKeyHTML = {
+    '27': 'key0', //esc
+    '112': 'key1', //F1
+    '113': 'key2', //f2
+    '114': 'key3', //f3
+    '115': 'key4', //f4
+    '116': 'key5', //f5
+    '117': 'key6', //f6
+    '118': 'key7', //f7
+    '119': 'key8', //f8
+    '120': 'key9', //f9
+    '121': 'key10', //f10
+    '122': 'key11', //f11
+    '123': 'key12', //f12
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+    '27': 'key0',
+}
+
 const keysType = {
     "abnt2": {
         'key0': ["'", '"'],
