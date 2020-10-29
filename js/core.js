@@ -1,7 +1,25 @@
+var block = 0
+
 $(document).on("keydown", function (e) {
 
-    const key = keydownToKeyHTML[e.which]
-    console.log('apertou', key, e.which, e.key, e)
+    let key = keydownToKeyHTML[e.which]
+
+    if(e.which == 18 && e.key == 'AltGraph'){
+        key = keydownToKeyHTML['999']
+        block++
+        console.log('Adicionou')
+    }
+
+    if(e.which === 17) {
+        for(var i = 0; i < 1000; ){
+            i = i + 1
+        }
+        console.log('Cabou')
+        if (block > 0) {
+            block--
+            return
+        }
+    }
 
     if(Array.isArray(key)) {
         for(var i of key){
@@ -18,7 +36,6 @@ $(document).on("keydown", function (e) {
         }
     }
 
-    e.preventDefault()
 });
 
 $(document).on("keyup", function (e) {
@@ -120,7 +137,7 @@ const keydownToKeyHTML = {
     '91': 'key68', // windows
     '18': 'key69', // alt
     '32': 'key70', // space
-    '18': 'key71', // alt gr
+    '999': 'key71', // alt gr
     '93': 'key72' // menu
     // TODO: Conferir situação ALT GR disparando dois event keydown
 }
