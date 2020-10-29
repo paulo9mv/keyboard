@@ -1,7 +1,6 @@
 $(document).on("keydown", function (e) {
 
     const key = keydownToKeyHTML[e.which]
-    console.log('apertou', key, e.which, e.key, e)
 
     if(Array.isArray(key)) {
         for(var i of key){
@@ -118,9 +117,8 @@ const keydownToKeyHTML = {
     //
     '17': ['key67', 'key73'], // ctrl
     '91': 'key68', // windows
-    '18': 'key69', // alt
+    '18': ['key69', 'key71'], // alt / altGR
     '32': 'key70', // space
-    '18': 'key71', // alt gr
     '93': 'key72' // menu
     // TODO: Conferir situação ALT GR disparando dois event keydown
 }
