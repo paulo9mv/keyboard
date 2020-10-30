@@ -10,7 +10,42 @@
 
 div {
     font-family: circularStdBook;
-    font-size: 26px;
+}
+
+.keyboard {
+    font-size: 24px;
+}
+
+.footer {
+    font-size: 24px;
+}
+
+.inner {
+    position: absolute;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #69f0ae;
+    color: black;
+    text-align: center;
+}
+
+.maincontent {
+    position: fixed;
+    left: 25%;
+    top: 25%;
+}
+
+.contrib {
+    font-size: 22px;
+}
+
+.center {
+    vertical-align: middle;
 }
 
 .keycontainer {
@@ -23,6 +58,26 @@ div {
     border-radius: 20px;
     border-style: solid;
     border-color: black;
+}
+
+.keycapslock {
+    width: 120px;
+}
+
+.keytab, .keyshift, .keyctrl, .keyalt, .keymenu, .keywin {
+    width: 100px;
+}
+
+.keyspace {
+    width: 510px;
+}
+
+.space {
+    width: 75px;
+}
+
+.keybackspace {
+    width: 130px;
 }
 
 .pressed {
