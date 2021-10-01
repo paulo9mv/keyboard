@@ -2,8 +2,8 @@ $(document).on("keydown", function (e) {
 
     const key = keydownToKeyHTML[e.which]
 
-    if(Array.isArray(key)) {
-        for(var i of key){
+    if (Array.isArray(key)) {
+        for (var i of key) {
             if (!pressing.includes(i)) {
                 pressing.push(i)
                 setBackgroundColor(i, 'pressing', 'pressed')
@@ -23,8 +23,8 @@ $(document).on("keydown", function (e) {
 $(document).on("keyup", function (e) {
     const key = keydownToKeyHTML[e.which]
 
-    if(Array.isArray(key)) {
-        for(var i of key){
+    if (Array.isArray(key)) {
+        for (var i of key) {
             let index = pressing.indexOf(i);
             if (index > -1) {
                 pressing.splice(index, 1);
@@ -39,7 +39,7 @@ $(document).on("keyup", function (e) {
         }
         setBackgroundColor(key, 'pressed', 'pressing')
     }
-    
+
 });
 
 const keydownToKeyHTML = {
@@ -184,12 +184,13 @@ const keysType = {
         'key52': ['Shift']
     }
 }
+/*
 const mapped = {}
 function mapCharsAsKeys() {
     const a = keysType.abnt2;
-    for(var b in a) {
+    for (var b in a) {
         const keys = a[b]
-        for(var key of keys) {
+        for (var key of keys) {
             if (mapped[key] === undefined)
                 mapped[key] = [];
             mapped[key].push(b)
@@ -198,6 +199,7 @@ function mapCharsAsKeys() {
 }
 
 mapCharsAsKeys()
+*/
 
 function setBackgroundColor(key, status, remove) {
     const doc = elementById(key)
@@ -211,9 +213,9 @@ function setBackgroundColor(key, status, remove) {
     doc.classList.add(status)
 }
 
-function asciiToChar(ascii) {
+/*function asciiToChar(ascii) {
     return String.fromCharCode(ascii)
-}
+}*/
 
 function elementById(id) {
     return document.getElementById(id)
