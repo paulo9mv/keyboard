@@ -1,6 +1,9 @@
 :root {
     --pressed: #ccff90;
     --pressing: #76ff03;
+    --key-size: 62px;
+    --key-fs: 13px;
+    --key-radius: 8px;
 }
 
 @font-face {
@@ -8,22 +11,139 @@
     src: url(../fonts/CircularStd-Book.otf);
 }
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: circularStdBook, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
 div {
-    font-family: circularStdBook;
+    font-family: circularStdBook, sans-serif;
 }
 
+/* ── Header ── */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.controls {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.controls button {
+    padding: 6px 14px;
+    border: 2px solid #000;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+    font-family: circularStdBook, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.15s;
+}
+
+.controls button:hover {
+    background-color: #69f0ae;
+}
+
+/* ── Main content ── */
+.maincontent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px 80px;
+    overflow-x: auto;
+}
+
+#pageTitle {
+    font-family: circularStdBook, sans-serif;
+    font-size: 22px;
+    margin: 0 0 18px;
+    text-align: center;
+}
+
+/* ── Keyboard scaling wrapper ── */
+#keyboard-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.keyboard-wrapper {
+    display: inline-block;
+    transform-origin: top left;
+}
+
+/* ── Keyboard rows ── */
 .keyboard {
-    font-size: 24px;
+    font-size: var(--key-fs);
+    border-collapse: separate;
+    border-spacing: 3px;
+    margin-bottom: 3px;
 }
 
-.footer {
-    font-size: 24px;
+/* ── Individual key ── */
+.keycontainer {
+    position: relative;
+    height: var(--key-size);
+    width: var(--key-size);
+    text-align: center;
+    border-radius: var(--key-radius);
+    border: 2px solid #333;
+    background-color: #fff;
+    cursor: default;
+    user-select: none;
+    white-space: nowrap;
 }
 
-.inner {
+/* ── Special key widths ── */
+.keycapslock  { width: 105px; }
+.keytab       { width: 90px;  }
+.keybackspace { width: 112px; }
+.keyshift     { width: 90px;  }
+.keyshift-wide{ width: 152px; }
+.keyctrl,
+.keyalt,
+.keywin,
+.keymenu      { width: 82px;  }
+.keyspace     { width: 400px; }
+.keyenter     { width: 105px; }
+
+/* ── Key states ── */
+.pressed  { background-color: var(--pressed);  }
+.pressing { background-color: var(--pressing); }
+
+/* ── Key label ── */
+.keyname {
     position: absolute;
+    right: 50%;
+    bottom: 50%;
+    transform: translate(50%, 50%);
+    font-size: var(--key-fs);
+    pointer-events: none;
 }
 
+/* ── Footer ── */
 .footer {
     position: fixed;
     left: 0;
@@ -32,65 +152,63 @@ div {
     background-color: #69f0ae;
     color: black;
     text-align: center;
+    padding: 6px 16px;
+    font-size: 15px;
 }
 
-.maincontent {
-    position: fixed;
-    left: 25%;
-    top: 25%;
+.footer p {
+    margin: 2px 0;
 }
 
-.contrib {
-    font-size: 22px;
+.footer a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
 }
 
-.center {
-    vertical-align: middle;
+.footer a:hover {
+    text-decoration: underline;
 }
 
-.keycontainer {
-    position: relative;
-    height: 70px;
-    width: 70px;
-    text-align: center;
-    margin: auto;
-
-    border-radius: 20px;
-    border-style: solid;
-    border-color: black;
+/* ── Responsive: medium screens ── */
+@media (max-width: 1080px) {
+    :root {
+        --key-size: 50px;
+        --key-fs: 11px;
+        --key-radius: 6px;
+    }
+    .keycapslock  { width: 85px;  }
+    .keytab       { width: 73px;  }
+    .keybackspace { width: 90px;  }
+    .keyshift     { width: 73px;  }
+    .keyshift-wide{ width: 124px; }
+    .keyctrl,
+    .keyalt,
+    .keywin,
+    .keymenu      { width: 66px;  }
+    .keyspace     { width: 325px; }
+    .keyenter     { width: 85px;  }
 }
 
-.keycapslock {
-    width: 120px;
-}
-
-.keytab, .keyshift, .keyctrl, .keyalt, .keymenu, .keywin {
-    width: 100px;
-}
-
-.keyspace {
-    width: 510px;
-}
-
-.space {
-    width: 75px;
-}
-
-.keybackspace {
-    width: 130px;
-}
-
-.pressed {
-    background-color: var(--pressed);
-}
-
-.pressing {
-    background-color: var(--pressing)
-}
-
-.keyname {
-    right: 50%;
-    bottom: 50%;
-    transform: translate(50%,50%);
-    position: absolute;
+/* ── Responsive: small screens ── */
+@media (max-width: 860px) {
+    :root {
+        --key-size: 40px;
+        --key-fs: 9px;
+        --key-radius: 5px;
+    }
+    .keycapslock  { width: 68px;  }
+    .keytab       { width: 58px;  }
+    .keybackspace { width: 72px;  }
+    .keyshift     { width: 58px;  }
+    .keyshift-wide{ width: 98px;  }
+    .keyctrl,
+    .keyalt,
+    .keywin,
+    .keymenu      { width: 53px;  }
+    .keyspace     { width: 260px; }
+    .keyenter     { width: 68px;  }
+    #keyboard-container {
+        justify-content: flex-start;
+    }
 }
